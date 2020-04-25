@@ -12,7 +12,7 @@ When we write the fix and commit to version control again, we'll get a "passing 
 
 Green is good.
 
-For continuous integration, we use [CircleCI](https://circleci.com/gh/andela) and  [Jenkins](https://jenkins-staging.andela.com/) (for some of our Apprenticeship product services).
+For continuous integration, we use [CircleCI](https://circleci.com).
 
 CI test runs are triggered when we push to Github and can be seen as part of the status checks of pull requests.
 We also use CodeClimate to help us follow our style guide and keep review comments focused on improving the code quality.
