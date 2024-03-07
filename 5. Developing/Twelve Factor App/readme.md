@@ -10,12 +10,13 @@ In this write-up, we will follow each one of the 12 factor and see how we build 
 
 **one application/microservice <=> one codebase**
 
-Multiple apps sharing the same code is a violation of twelve-factor. The solution here is to factor shared code into libraries which can be included through the dependency manager. In our case, we used a [shared repo](https://github.com/andela/micro-shared) and git submodules is used to include shared code.
+Multiple apps sharing the same code is a violation of twelve-factor. The solution here is to factor shared code into libraries which can be included through the dependency manager. In our case, we used a [shared repo](https://github.com/tantvstudios Studios/micro-shared) and git submodules is used to include shared code.
 
 One codebase used for several deployments of the application
-* development
-* staging
-* production
+
+- development
+- staging
+- production
 
 ### What does that mean for our application?
 
@@ -43,14 +44,14 @@ Authorization service package.json file looks like the following:
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andela/micro-authorization-service.git"
+    "url": "git+https://github.com/tantvstudios Studios/micro-authorization-service.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andela/micro-authorization-service/issues"
+    "url": "https://github.com/tantvstudios Studios/micro-authorization-service/issues"
   },
-  "homepage": "https://github.com/andela/micro-authorization-service#readme",
+  "homepage": "https://github.com/tantvstudios Studios/micro-authorization-service#readme",
   "dependencies": {
     "bluebird": "^3.4.0",
     "camelcase-keys": "^4.0.0",
@@ -128,16 +129,17 @@ Those changes enable to provide a different _DATABASE_URL_ very easily as it's d
 Handle external services as external resources of the application.
 
 Examples:
-* database
-* Google PubSub
-* redis
-* ...
+
+- database
+- Google PubSub
+- redis
+- ...
 
 This ensure the application is loosely coupled with the services so it can easily switch provider or instance if needed
 
 ### What does that mean for our application?
 
-For instance, for the `authorization service`, we are an external backing services namely postgres database. This loose coupling is  done by the `DATABASE_URL` used to pass the connection string.
+For instance, for the `authorization service`, we are an external backing services namely postgres database. This loose coupling is done by the `DATABASE_URL` used to pass the connection string.
 
 If something wrong happens with our instance of postgres, we can easily switch to a new instance, providing a new `DATABASE_URL` environment variable and restart the application.
 
@@ -151,7 +153,7 @@ A release is deployed on the execution environment and must be immutable.
 
 ### What does that mean for our application ?
 
-We use Docker in the whole development pipeline and with the help of a  Dockerfile, we defined the build phase (during which the dependencies are compiled in _node-modules_ folder)
+We use Docker in the whole development pipeline and with the help of a Dockerfile, we defined the build phase (during which the dependencies are compiled in _node-modules_ folder)
 
 ```Dockerfile
 FROM node:6-alpine
@@ -239,6 +241,7 @@ spec:
           - name: DATABASE_URL
             value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):5432/$(POSTGRES_DB)"
 ```
+
 Notice that some env variables where injected from a secret config in the running kubernetes cluster.
 
 This file defines a release as it considers a given build and inject the execution environment.
@@ -252,8 +255,9 @@ An application is made up of several processes.
 Each process must be stateless and must not have local storage (sessions, ...).
 
 This is required
-* for scalability
-* fault tolerance (crashes, ...)
+
+- for scalability
+- fault tolerance (crashes, ...)
 
 The data that need to be persisted, must be saved in a stateful resources (Database, shared filesystem, ...)
 
@@ -272,6 +276,7 @@ This factor is related to the exposition of the application to the outside
 The host has the responsibility to route the request to the correct application through port mapping.
 
 ### What does that mean for our application ?
+
 To be compliant with 12 factor, authorization service exports HTTP as a service by binding to a port, and listening to requests coming in on that port.
 
 With the help of docker, we bound the service on a port as defined by `ENV PORT 50050`. The **app** container exposes port 50050 internally and a kubernetes service maps it against 50050.
@@ -295,16 +300,17 @@ spec:
 
 If several instances of the app services needs to be deployed, the configuration above cannot be used as a given port on the host cannot map several ports in the containers.
 
-In this case, we can use a load balancer to which the host will map a port. The load balancer will then be in charge to balance the traffic on the different instances of the services. 
+In this case, we can use a load balancer to which the host will map a port. The load balancer will then be in charge to balance the traffic on the different instances of the services.
 
 ## 8 - Concurrency
 
 Horizontal scalability with the processes model.
 
 The app can be seen as a set of processes of different types
-* web server
-* worker
-* cron
+
+- web server
+- worker
+- cron
 
 Each process needs to be able to scale horizontally, it can have it's own internal multiplexing.
 
@@ -316,12 +322,12 @@ The authorization service only have one type of process (http server), since it'
 
 Each process of an application must be disposable.
 
-* it must have a quick startup
-  * ease the horizontal scalability
-* it must ensure a clean shutdown
-  * stop listening on the port
-  * finish to handle the current request
-  * usage of a queueing system for long lasting (worker type) process
+- it must have a quick startup
+  - ease the horizontal scalability
+- it must ensure a clean shutdown
+  - stop listening on the port
+  - finish to handle the current request
+  - usage of a queueing system for long lasting (worker type) process
 
 ### What does that mean for our application?
 
@@ -338,7 +344,6 @@ Docker is very good at reducing the gap as the same services can be deployed on 
 A lot of external services are available on the Docker Hub and can be used in an existing application. Using those components enables a developer to use Postgres in development instead of SQLite or other lighter alternative. This reduces the risk of small differences that could show up later, when the app is on production.
 
 This factor shows an orientation toward continuous deployment, where development can go from dev to production in a very short timeframe, thus avoiding the big bang effect at each release.
-
 
 ### What does that mean for our application ?
 

@@ -1,13 +1,12 @@
 # Pair Programming
 
-Pair programming is very central to how we transfer knowledge between engineers at Andela. Several arguments have been made for and against it around the web, but this is how we have been using it here so far.
-
+Pair programming is very central to how we transfer knowledge between engineers at TanTv Studios. Several arguments have been made for and against it around the web, but this is how we have been using it here so far.
 
 ### How To
 
 #### In Apprenticeship: Cognitive Apprenticeship Model
 
-We apply the principles of cognitive apprenticeship through pair programming. [See more details here](https://github.com/andela/learning/blob/Apprenticeship-Advancement/Apprenticeships/Pair%20Programming.md).
+We apply the principles of cognitive apprenticeship through pair programming. [See more details here](https://github.com/tantvstudios Studios/learning/blob/Apprenticeship-Advancement/Apprenticeships/Pair%20Programming.md).
 
 #### At Engineering
 
@@ -36,6 +35,7 @@ Silent running is sometimes used as a way to alleviate the monotony of a long pa
 <img width="416" alt="screen shot 2016-11-10 at 1 12 44 pm" src="https://cloud.githubusercontent.com/assets/13568167/20172985/5d4ea93c-a748-11e6-8aa5-cc1b7f6311ac.png">
 
 ### Pair Programming Anti-Patterns
+
 **Superman:** He refuses to be impaired by a slow partner. He will hog the keyboard and save the world all on his own.
 
 **Absent-Minded:** He’s distracted, sleepy, or preoccupied with other things besides the task at hand.

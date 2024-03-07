@@ -2,63 +2,66 @@
 
 1. [Creating New gRPC Endpoints](#creating-new-grpc-endpoints)
 
-***
+---
 
 ## Creating New gRPC Endpoints
 
-This walkthrough uses references from [micro-pulse-service](https://github.com/andela/micro-pulse-service).
+This walkthrough uses references from [micro-pulse-service](https://github.com/tantvstudios Studios/micro-pulse-service).
 
-Andela Systems architecture implements [CQRS](https://medium.com/technology-learning/event-sourcing-and-cqrs-a-look-at-kafka-e0c1b90d17d8#.ansu5rx8v). Based on this, the READ and WRITE operations use different models. We are separating the READ and WRITE concerns in that the READ operations whereby we get data directly  from the database is handled normally whereas for WRITE operations which involve changing the state of data, we employ use of pubsub as an eventstore.
+TanTv Studios Systems architecture implements [CQRS](https://medium.com/technology-learning/event-sourcing-and-cqrs-a-look-at-kafka-e0c1b90d17d8#.ansu5rx8v). Based on this, the READ and WRITE operations use different models. We are separating the READ and WRITE concerns in that the READ operations whereby we get data directly from the database is handled normally whereas for WRITE operations which involve changing the state of data, we employ use of pubsub as an eventstore.
 
-**NOTE:** gRPC endpoints must be added from [micro-shared](https://github.com/andela/micro-shared).
+**NOTE:** gRPC endpoints must be added from [micro-shared](https://github.com/tantvstudios Studios/micro-shared).
 
 ### Read Operation endpoint
 
 We'll use `list ratings` operation to map to an endpoint for demonstration purposes
-  * In `micro-shared`, create a proto definition message type
-    To do this navigate  to `micro-shared/pulse/pulse-svc.proto` file
-    ```
-    /*
-      List ratings.
 
-      This endpoint list all available ratings.
-    */
-    rpc ListRatings (pulse.ListRatingsRequest) returns (pulse.Ratings) {
-      option (google.api.http) = {
-        get: "/api/v1/pulse/ratings"
-      };
-    }
-    ```
+- In `micro-shared`, create a proto definition message type
+  To do this navigate to `micro-shared/pulse/pulse-svc.proto` file
 
-    `ListRatings` is the endpoint, `pulse.ListRatingsRequest` the passed arguments and `pulse.Ratings` is the returned message containing the `Ratings` details. Create the messages in `micro-shared/pulse/pulse.proto` file as follows:
+  ```
+  /*
+    List ratings.
 
-    `ListRatingsRequest` message type shows rating to be queried.
+    This endpoint list all available ratings.
+  */
+  rpc ListRatings (pulse.ListRatingsRequest) returns (pulse.Ratings) {
+    option (google.api.http) = {
+      get: "/api/v1/pulse/ratings"
+    };
+  }
+  ```
 
-    ```
-    message ListRatingsRequest {
-      int32 limit = 1;
-      int32 page = 2;
-    }
-    ```
+  `ListRatings` is the endpoint, `pulse.ListRatingsRequest` the passed arguments and `pulse.Ratings` is the returned message containing the `Ratings` details. Create the messages in `micro-shared/pulse/pulse.proto` file as follows:
 
-    `Ratings` message type shows details of the queried ratings.
+  `ListRatingsRequest` message type shows rating to be queried.
 
-    ```
-    message Ratings {
-      repeated Rating values = 1;
-      int32 count = 2;
-    }
-    ```
+  ```
+  message ListRatingsRequest {
+    int32 limit = 1;
+    int32 page = 2;
+  }
+  ```
 
-* In `micro-pulse`, create a function in ratings controller that will return list of all ratings  
-  - Go to `controllers/ratings.js`. In our case we have the `index` method.  
+  `Ratings` message type shows details of the queried ratings.
+
+  ```
+  message Ratings {
+    repeated Rating values = 1;
+    int32 count = 2;
+  }
+  ```
+
+- In `micro-pulse`, create a function in ratings controller that will return list of all ratings
+  - Go to `controllers/ratings.js`. In our case we have the `index` method.
   - Navigate to `server/index.js` to map the `listRatings` endpoint to the `index` method.
 
 ### Writing tests for the method
-We need to create tests for the `index` controller. For our tests to work we need to have seed data. Since we want to retrieve data from the database we have to populate it with that data. This is done in the `/db/seeds` folder.
-Each time the test command  is run the database is cleared first, then populated with the data and finally the tests are run.
 
-Navigate to `tests/component/ratings.js` to  define our tests.
+We need to create tests for the `index` controller. For our tests to work we need to have seed data. Since we want to retrieve data from the database we have to populate it with that data. This is done in the `/db/seeds` folder.
+Each time the test command is run the database is cleared first, then populated with the data and finally the tests are run.
+
+Navigate to `tests/component/ratings.js` to define our tests.
 Load service descriptors from pulse.proto file.
 
 ```
@@ -68,6 +71,7 @@ const pulseProto = grpc.load(
   { convertFieldsToCamelCase: true }
 );
 ```
+
 Then create a gRPC client to be able to connect to the pulse service. The `SERVICE_URL` represents the server address and port. This is where the server will be listening for the client requests. It's value for the pulse service is `SERVICE_URL='0.0.0.0:50067`.
 
 ```
@@ -93,10 +97,11 @@ it('lists all ratings with ALL data', (done) => {
 });
 ```
 
-
 ### Write Operation endpoint
-We'll use `create rating` operation to map to an endpoint for demonstration purposes.  
-* The first two steps of the Read operation apply with only minor modifications:
+
+We'll use `create rating` operation to map to an endpoint for demonstration purposes.
+
+- The first two steps of the Read operation apply with only minor modifications:
 
 ```
 /*
@@ -111,9 +116,10 @@ We'll use `create rating` operation to map to an endpoint for demonstration purp
     };
   }
 
-``` 
-  `CreateRating` is the endpoint, `pulse.RatingRequest` is the required parameter when creating a new rating and `pulse.Rating` is the returned rating details once created.
-  
+```
+
+`CreateRating` is the endpoint, `pulse.RatingRequest` is the required parameter when creating a new rating and `pulse.Rating` is the returned rating details once created.
+
 ```
 message RatingRequest {
   string user_id = 2;
@@ -155,13 +161,14 @@ message Rating {
 
 In micro-pulse, create a function in ratings controllers that will create a rating
 
-* Go to controllers/ratings.js. In our case we have the `create` method.
-* Navigate to server/index.js to map the createRating endpoint to the `create` method.
+- Go to controllers/ratings.js. In our case we have the `create` method.
+- Navigate to server/index.js to map the createRating endpoint to the `create` method.
 
-  
 ### Writing tests for the methods
+
 The procedure is the same as for Read operation for controller tests but we also have to write tests for event handlers for this Write operation.  
 Navigate to `tests/component/ratings.js` to add controller test
+
 ```
 it('creates a rating and action items', (done) => {
   const newAction = {
@@ -224,10 +231,10 @@ Finally write the tests case.
 
 ```
 it('creates a rating successfully', (done) => {
-  const newRating = Object.assign({}, mockRating, 
+  const newRating = Object.assign({}, mockRating,
     { id: '-KoDrQcz4FfwN3U5KnGs', actions: [anotherMockAction] }
   );
-  newRating.actions = 
+  newRating.actions =
     handlers.createRating(newRating, (err, res) => {
       expect(res.done).toBe(true);
       done();

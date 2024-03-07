@@ -1,34 +1,39 @@
 ### Table of Content
-***
+
+---
 
 1. [Introduction](#introduction)
 2. [Automagic Formatting](#automagic-formatting)
-    1. [Basic Linting Rules](#basic-linting-rules)
-    2. [Basic Prettier Rules](#basic-prettier-rules)
+   1. [Basic Linting Rules](#basic-linting-rules)
+   2. [Basic Prettier Rules](#basic-prettier-rules)
 3. [File Naming](#file-naming)
 4. [Branch Naming](#branch-naming)
 5. [Commit Message](#commit-message)
-    1. [Message Header](#message-header)
-    2. [Message Body](#message-body)
-    3. [Message Footer](#message-footer)
-    4. [Message Example](#message-example)
+   1. [Message Header](#message-header)
+   2. [Message Body](#message-body)
+   3. [Message Footer](#message-footer)
+   4. [Message Example](#message-example)
 6. [Pull Request](#pull-request)
-    1. [PR Title](#pr-title)
-    2. [PR Description Template](#pr-description-template)
-    3. [PR Example](#pr-example)
-    4. [PR Etiquette](#pr-etiquette)
+   1. [PR Title](#pr-title)
+   2. [PR Description Template](#pr-description-template)
+   3. [PR Example](#pr-example)
+   4. [PR Etiquette](#pr-etiquette)
 7. [Jira Issue](#jira-issue)
-    1. [Story Issue](#story)
-    2. [Bug Issue](#bug)
-    3. [Task Issue](#task)
+   1. [Story Issue](#story)
+   2. [Bug Issue](#bug)
+   3. [Task Issue](#task)
 8. [Repo Readme](#repo-readme)
 
 ### Introduction
-***
+
+---
+
 The following are rules guiding our coding process. Common linting and prettier standards are listed below, and they are based on our work with TypeScript, which is our development language. Projects should extend these linting and prettier standards within their codebase as may be needed.
 
 ### Automagic Formatting
-***
+
+---
+
 Our projects should have the following packages installed within `devDependencies`:
 
 - `tslint` >= 5.12.1
@@ -57,11 +62,7 @@ The following pre-commit hooks configuration should also be specified within the
   "lint-staged": {
     "ignore": [],
     "linters": {
-      "*.{ts,js,json,css,md}": [
-        "yarn prettify",
-        "yarn lint",
-        "git add"
-      ]
+      "*.{ts,js,json,css,md}": ["yarn prettify", "yarn lint", "git add"]
     }
   }
 }
@@ -70,51 +71,63 @@ The following pre-commit hooks configuration should also be specified within the
 We specify basic linting and prettier standards that all projects within Engineering must extend so that linting and prettier issues are automagically resolved if engineers inadvertently attempt to commit non-compliant work.
 
 #### Basic Linting Rules
-***
+
+---
 
 ```json
-  {
-    "defaultSeverity": "error",
-    "extends": ["tslint:recommended"],
-    "jsRules": {
-      "no-unused-expression": true
-    },
-    "rules": {
-      "arrow-parens": false,
-      "array-type": [ false ],
-      "curly": false,
-      "eofline": true,
-      "indent": [ true, "spaces", 2 ],
-      "interface-name": [ true ],
-      "max-classes-per-file": [ true, 1 ],
-      "max-line-length": [
-        true,
-        {
-          "limit": 150,
-          "ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements |//"
-        }
-      ],
-      "member-access": [ false ],
-      "member-ordering": [ false ],
-      "no-console": [ true, "log", "info", "error", "warn" ],
-      "no-empty": true,
-      "no-empty-interface": true,
-      "no-unused-expression": false,
-      "object-literal-key-quotes": [true, "as-needed"],
-      "object-literal-sort-keys": false,
-      "one-line": [ true, "check-catch", "check-finally", "check-else", "check-open-brace" ]    ,
-      "one-variable-per-declaration": [ false ],
-      "ordered-imports": [ false ],
-      "semicolon": [ true, "always" ],
-      "variable-name": [ true, "ban-keywords", "check-format", "allow-leading-underscore" ]
-    },
-    "rulesDirectory": []
-  }
-
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "rules": {
+    "arrow-parens": false,
+    "array-type": [false],
+    "curly": false,
+    "eofline": true,
+    "indent": [true, "spaces", 2],
+    "interface-name": [true],
+    "max-classes-per-file": [true, 1],
+    "max-line-length": [
+      true,
+      {
+        "limit": 150,
+        "ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements |//"
+      }
+    ],
+    "member-access": [false],
+    "member-ordering": [false],
+    "no-console": [true, "log", "info", "error", "warn"],
+    "no-empty": true,
+    "no-empty-interface": true,
+    "no-unused-expression": false,
+    "object-literal-key-quotes": [true, "as-needed"],
+    "object-literal-sort-keys": false,
+    "one-line": [
+      true,
+      "check-catch",
+      "check-finally",
+      "check-else",
+      "check-open-brace"
+    ],
+    "one-variable-per-declaration": [false],
+    "ordered-imports": [false],
+    "semicolon": [true, "always"],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
+    ]
+  },
+  "rulesDirectory": []
+}
 ```
 
 #### Basic Prettier Rules
-***
+
+---
 
 ```json
 {
@@ -125,11 +138,12 @@ We specify basic linting and prettier standards that all projects within Enginee
   "tabWidth": 2,
   "useTabs": false
 }
-
 ```
 
 ### File Naming
-***
+
+---
+
 We favour the `dot separated` + `kebab-case` convention. Files created should be named using the following format:
 
 ```
@@ -167,7 +181,9 @@ file extension: ts
 Giving us `example-file.service.interface.ts`.
 
 ### Branch Naming
-***
+
+---
+
 Branches created should be named using the following format:
 
 ```
@@ -193,10 +209,13 @@ story/DT-1048-resources-rest-endpoints
 ```
 
 ### Commit Message
-***
+
+---
+
 A commit message consists of a **header**, a **body** and a **footer**, separated by a blank line.
 
 Any line of the commit message cannot be longer than **100 characters!** This allows the message to be easier to read on github as well as in various git tools.
+
 ```
 <issue ID>-<type>(<scope>): <subject>
 <BLANK LINE>
@@ -204,44 +223,53 @@ Any line of the commit message cannot be longer than **100 characters!** This al
 <BLANK LINE>
 <footer>
 ```
+
 These rules are adopted from [the AngularJS commit convention](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/).
 
 #### Message Header
-***
+
+---
+
 The message header is a single line that contains succinct description of the change containing an **issue ID**, a **type**, an optional **scope** and a **subject**.
 
 `issue ID` - this is to provide the advantage of immediately seeing the related Jira issue at the very top of the commit message. This becomes really useful when one does `git log --oneline` which doesn't show as far down to the footer of the commit message.
 
 #####`<type>`
 This describes the kind of change that this commit is providing. It also applies to subtasks belonging to any of the Jira issue types..
-* story (story)
-* fix (bug fix)
-* docs (documentation)
-* style (formatting, missing semi colons, …)
-* refactor
-* test (when adding missing tests)
-* task (maintain)
+
+- story (story)
+- fix (bug fix)
+- docs (documentation)
+- style (formatting, missing semi colons, …)
+- refactor
+- test (when adding missing tests)
+- task (maintain)
 
 #####`<scope>`
 Scope can be anything specifying place of the commit change. For example **events**, **kafka**, **userModel**, **authorization**, **authentication**, **loginPage**, etc...
 
 #####`<subject>`
 This is a very short description of the change.
-* use imperative, present tense: “change” not “changed” nor “changes”
-* don't capitalize first letter
-* no dot (.) at the end
+
+- use imperative, present tense: “change” not “changed” nor “changes”
+- don't capitalize first letter
+- no dot (.) at the end
 
 #### Message Body
-***
-* just as in `subject` use imperative, present tense: “change” not “changed” nor “changes”
-* includes motivation for the change and contrasts with previous behavior
+
+---
+
+- just as in `subject` use imperative, present tense: “change” not “changed” nor “changes”
+- includes motivation for the change and contrasts with previous behavior
 
 http://365git.tumblr.com/post/3308646748/writing-git-commit-messages
 
 http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 #### Message Footer
-***
+
+---
+
 Finished, fixed or delivered issue types should be listed on a separate line in the footer prefixed with "Finishes", "Fixes" , or "Delivers" keyword like this:
 
 ```
@@ -249,6 +277,7 @@ Finished, fixed or delivered issue types should be listed on a separate line in 
 ```
 
 A reminder would be to think of completion this way:
+
 - We **Finish** tasks, so for a `task` issue type, the footer should read:
 
         Finishes JIRA_ISSUE_ID
@@ -268,7 +297,9 @@ If the commit doesn't mark completion, that is, this isn't the last commit for t
 ```
 
 #### Message Example
-***
+
+---
+
 ```
 DT-1048-story(kafka): implement exactly once delivery
 
@@ -279,10 +310,13 @@ DT-1048-story(kafka): implement exactly once delivery
 ```
 
 ### Pull Request
-***
+
+---
 
 #### PR Title
-***
+
+---
+
 The PR title should be named using the following format:
 
 ```
@@ -290,42 +324,53 @@ The PR title should be named using the following format:
 ```
 
 #### PR Description Template
-***
+
+---
+
 The description of the PR should contain the following headings and corresponding content in Markdown format.
 
 ```md
 #### Description
+
 #### Type of change
+
 #### How Has This Been Tested?
+
 #### Checklist:
+
 #### JIRA
 ```
 
 #### PR Example
-***
-![](https://github.com/andela/engineering-playbook/blob/master/assets/pr-sample.png?raw=true)
+
+---
+
+![](https://github.com/tantvstudios Studios/engineering-playbook/blob/master/assets/pr-sample.png?raw=true)
 
 #### PR Etiquette
-***
+
+---
+
 It is our belief that PR reviews should not negatively impact a team's ability to deliver features.
 PRs that take too much time to get reviewed can hinder on a team's progress. As such, we practice the following behaviours when raising PRs:
 
-- When I raise a PR, I specifically assign a developer or [engineering team](https://github.com/orgs/andela/teams/technology/teams) as reviewer
+- When I raise a PR, I specifically assign a developer or [engineering team](https://github.com/orgs/TanTv Studios/teams/technology/teams) as reviewer
 - When I raise a PR, I notify the reviewer(s) on Slack in a public channel
 - The reviewer(s) can re-assign the PR to someone else (e.g. TTL re-assigning to a Senior Engineer)
 - The reviewer(s) has a **3 hours SLA** to review the PR
 - If SLA is not met, I can merge the unreviewed PR if and only if:
-    - All the PR checks are passing (CircleCI, CodeClimate, Test Coverage)
-    - I communicate in #technology Slack channel that I am merging an unreviewed PR
-    - I immediately take ownership of fixing any issues that arise from merging the PR
-
-
-
+  - All the PR checks are passing (CircleCI, CodeClimate, Test Coverage)
+  - I communicate in #technology Slack channel that I am merging an unreviewed PR
+  - I immediately take ownership of fixing any issues that arise from merging the PR
 
 ### Jira Issues
-***
+
+---
+
 #### Story
-***
+
+---
+
 A Story issue should contain the following information
 
 **Title:** one line describing the story
@@ -333,6 +378,7 @@ A Story issue should contain the following information
 **Description:** a detailed description of the story. The description should include acceptance criteria
 
 Example
+
 ```
 Title:
 As a Director of Success (DoS), I should be able to initiate a "Share with Fellows" action for engagements with "Completed" needs assessments to Fellows who are not externally placed.
@@ -345,7 +391,9 @@ Description:
 **Note:** Every story title should include the word ‘should’ as opposed to ‘can’. e.g. It’s unclear whether the story “User can delete comment” is a feature or a bug. “User should be able to delete comment” or “User should not be able to delete comment” are much clearer: the former is a feature, the latter a bug.
 
 #### Bug
-***
+
+---
+
 A Bug issue should contain the following information:
 
 **Title:** A short description of the bug.
@@ -357,6 +405,7 @@ A Bug issue should contain the following information:
 **Resources:** Include screenshots and other assets to help explain/show the bug.
 
 Example
+
 ```
 Title:
 Unwanted spaces should not appear between widgets.
@@ -374,7 +423,9 @@ Attach a screenshot of the error caused by the bug if applicable.
 ```
 
 #### Task
-***
+
+---
+
 A Task issue should include the following information:
 
 **Title:** A short description of what needs to be done.
@@ -384,6 +435,7 @@ A Task issue should include the following information:
 **Acceptance Criteria:** These should include conditions that must be met for the chore to be accepted.
 
 Example
+
 ```
 Title:
 Setup CI for user management service
@@ -396,7 +448,9 @@ Working CI integration with circle CI.
 ```
 
 ### Repo Readme
-***
+
+---
+
 There's a lot we can do to encourage code reuse, sharing and onboarding of new team members. For instance, Every github repo should fill in the short description and website link at the top. Also, a github repository needs a proper Readme to best help out our teammates.
 
 The belief here is that a repo should have a few defining traits to make it easy for anyone to understand it's purpose, set it up, run it's tests, and work towards contributing to it.

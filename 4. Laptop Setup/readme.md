@@ -1,11 +1,13 @@
 # Laptop/Machine Setup
+
 This guide covers the basics of setting up a development environment on a new Mac. Whether you are an experienced programmer or not, this guide is intended for everyone to use as a reference for setting up your environment or installing languages/libraries.
 
 Some of the environments we will set up are Node (JavaScript), Python, C++ and Ruby. Even if you don't program in all of them, they are useful to have as many command-line tools rely on them
 
-The full guide can be found [here](https://sourabhbajaj.com/mac-setup/). But below are the essential apps required for minimal machine setup. 
+The full guide can be found [here](https://sourabhbajaj.com/mac-setup/). But below are the essential apps required for minimal machine setup.
 
 ### Essential Applications & Settings
+
 1. [Sytem preferences](https://sourabhbajaj.com/mac-setup/SystemPreferences/) (optional)
 2. [Xcode](https://sourabhbajaj.com/mac-setup/Xcode/)
 3. [Homebrew](https://sourabhbajaj.com/mac-setup/Homebrew/)
@@ -35,7 +37,7 @@ We recommend the following extensions or their equivalent for your IDE of choice
   - [Highlight Trailing White Spaces](https://marketplace.visualstudio.com/items?itemName=ybaumes.highlight-trailing-white-spaces)
   - [Markdown lint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
   - [Trailing Spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)
-  - [vscode-proto3](https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3) 
+  - [vscode-proto3](https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3)
 - **JavaScript/Node.js Specific:**
   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
   - [Import cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
@@ -45,4 +47,5 @@ We recommend the following extensions or their equivalent for your IDE of choice
   - [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
 
 ### Development toolkit
-Standup Andela's microservices on demand by setting up our [development toolkit](https://github.com/andela/development-toolkit)
+
+Standup TanTv Studios's microservices on demand by setting up our [development toolkit](https://github.com/tantvstudios Studios/development-toolkit)

@@ -1,1 +1,1 @@
-Our internal architecture is documented [here](https://docs.google.com/document/d/1HJnk8cqvblyW6NOGN6xkSsWVvtMmYBrumfXN145ZTL4)
+Our internal architecture is documented is not yet available

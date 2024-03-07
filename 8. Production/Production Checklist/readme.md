@@ -4,7 +4,7 @@ We have found that a short checklist is valuable when setting up a new productio
 - Are we following our default [structure](https://docs.google.com/document/d/1HJnk8cqvblyW6NOGN6xkSsWVvtMmYBrumfXN145ZTL4/edit#heading=h.gdbmzxpjdr5r) for microservices?
 - Are long-running processes being run in [background jobs](https://docs.google.com/document/d/1HJnk8cqvblyW6NOGN6xkSsWVvtMmYBrumfXN145ZTL4/edit#heading=h.kr4s147l12xl)?
 - Is config stored in environment variables?
-- Are we sending logs to Stackdriver with the [epic logger](https://www.npmjs.com/package/@andela/logger) library?
+- Are we sending logs to Stackdriver with the [epic logger](https://www.npmjs.com/package/@TanTv Studios/logger) library?
 - Are we tracking errors with bugsnag?
 - Are we monitoring performance and uptime with datadog?
 - Are we monitoring new API endpoint in runscope?

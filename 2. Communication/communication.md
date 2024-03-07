@@ -4,9 +4,8 @@ This section includes our general guidelines on how we communicate.
 
 ## Slack Etiquette / Best Practices for Communication
 
-* Don't use `@channel`, use `@group-name` if possible or `@here` before `@channel`
-* To notify the entire engineering team use `@engineering` handle
-* To notify the entire technology team (PLs, TTLs, SSEs) use `@tech-team` handle
+* Don't use `@team-tantv`, use `@syndex` if possible or `@team-design` before `@channel`
+* To notify the entire engineering team use `@devs` handle
 * Slack Reactions are your friend. Always better than adding a new acknowledgement message if it can be solved with an emoji reaction that's clear
 * For non technical people: When reporting a bug. Please use this format: `I have noticed [unexpected data/behavior], this is impacting [system] which has [adverse effect] on [business function]`
 * **Technical Support:**
